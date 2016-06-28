@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Custom elements demo</title>
+
+    <script  type="text/javascript" type="text/ecmascript-6">
+        var myTimerProto = Object.create(HTMLElement.prototype);
+        myTimerProto.tick = function() {
+            this.innerHTML++;
+        };
+        document.registerElement('my-timer', {
+            prototype: myTimerProto
+        });
+        setInterval(()=>{
+            timer.tick();
+        }, 1000);
+    </script>
+</head>
+<body>
+<my-timer id="timer">0</my-timer>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Custom elements extended properties</title>
+</head>
+<script>
+    var MyTimerProto = Object.create(HTMLButtonElement.prototype);
+    MyTimerProto.tick = function() {
+        this.innerHTML++;
+    };
+
+    document.registerElement("my-timer", {
+        prototype: MyTimerProto,
+        extends: 'button'
+    });
+
+
+</script>
+<body>
+    <button is="my-timer" id="timer">0</button>
+    <button>0</button>
+<script>
+    setInterval(function() {
+        timer.tick();
+    }, 1000);
+
+    timer.onclick = function() {
+        alert("Current value: " + this.innerHTML);
+    };
+</script>
+</body>
+</html>

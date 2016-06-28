@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Custom elements lifecycle</title>
+</head>
+<script>
+    var MyTimerProto = Object.create(HTMLElement.prototype);
+
+    MyTimerProto.tick = function() {
+        this.timer++;
+        this.innerHTML = this.timer;
+    };
+
+    MyTimerProto.createdCallback = function() {
+        this.timer = 0;
+    };
+
+    MyTimerProto.attachedCallback = function() {
+        setInterval(this.tick.bind(this), 1000);
+    };
+
+    document.registerElement("my-timer", {
+        prototype: MyTimerProto
+    });
+</script>
+<body>
+    <my-timer id="timer"></my-timer>
+</body>
+</html>

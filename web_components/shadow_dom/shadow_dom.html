@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shadow dom</title>
+    <style>
+        input::-webkit-datetime-edit {
+            background: red;
+        }
+    </style>
+
+</head>
+<body>
+    <input type="date"/>
+    <p id="element">
+        <span>
+            Paragraph inner text
+        </span>
+    </p>
+    <script>
+        setTimeout(function () {
+            var root = element.createShadowRoot();
+            root.innerHTML =  "<p>Shadow dom inner text</p><p>Origin content:<content select='span'>123</content></p>";
+        }, 2000);
+    </script>
+</body>
+</html>
